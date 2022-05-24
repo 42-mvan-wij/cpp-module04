@@ -31,3 +31,7 @@ void Cat::makeSound() const {
 void Cat::giveIdea(std::string idea) const {
 	this->brain->addIdea(idea);
 }
+
+const Brain *Cat::getBrain() const {
+	return this->brain;
+}

@@ -31,3 +31,7 @@ void Dog::makeSound() const {
 void Dog::giveIdea(std::string idea) const {
 	this->brain->addIdea(idea);
 }
+
+const Brain *Dog::getBrain() const {
+	return this->brain;
+}

@@ -6,7 +6,7 @@
 #    By: mvan-wij <mvan-wij@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/10/27 13:16:39 by mvan-wij      #+#    #+#                  #
-#    Updated: 2022/05/23 16:54:17 by mvan-wij      ########   odam.nl          #
+#    Updated: 2022/05/24 12:16:57 by mvan-wij      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,9 @@ exec_no_nl = printf "$(1)$(CLEAR_REST_OF_LINE)\n"; $(1); printf "\e[A"
 
 ################################################################################
 
-PROJECT		:= ex01-abstract-animals
-NAME		:= abstract-animals
-NAME_BONUS	:= abstract-animals
+PROJECT		:= ex01-smart-animals
+NAME		:= smart-animals
+NAME_BONUS	:= smart-animals
 
 LIBFT		:=
 MINILIBX	:=

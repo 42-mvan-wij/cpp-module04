@@ -8,7 +8,7 @@
 __attribute__((destructor))
 void check_leaks() {
 	std::cout << std::endl;
-	system("leaks -q abstract-animals");
+	system("leaks -q smart-animals");
 }
 
 int main() {
@@ -22,6 +22,13 @@ int main() {
 	d.giveIdea("Food");
 	d.giveIdea("Cuddles");
 	const Dog dd(d);
+	std::cout << "Is shallow copy: " << (d.getBrain() == dd.getBrain() ? "true" : "false") << std::endl;
+
+	const Cat c;
+	c.giveIdea("Food");
+	c.giveIdea("World Domination");
+	const Cat cc(c);
+	std::cout << "Is shallow copy: " << (c.getBrain() == cc.getBrain() ? "true" : "false") << std::endl;
 
 	for (int i = 0; i < ANIMALS; i++) {
 		delete animals[i];
