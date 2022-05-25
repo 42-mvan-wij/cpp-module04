@@ -9,7 +9,7 @@ Cure::Cure(const Cure &src) : AMateria("cure") {
 }
 
 Cure &Cure::operator=(Cure const &rhs) {
-
+	(void)rhs;
 	return *this;
 }
 

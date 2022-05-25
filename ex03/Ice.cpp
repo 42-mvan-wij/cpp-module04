@@ -9,7 +9,7 @@ Ice::Ice(const Ice &src) : AMateria("ice") {
 }
 
 Ice &Ice::operator=(Ice const &rhs) {
-
+	(void)rhs;
 	return *this;
 }
 
