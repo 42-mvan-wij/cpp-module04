@@ -6,6 +6,8 @@
 
 # define INV_SLOTS 4
 
+class AMateria;
+
 class Character : public ICharacter {
 	public:
 		Character();

@@ -5,6 +5,8 @@
 
 # define NUM_MATERIAS 4
 
+class AMateria;
+
 class MateriaSource : public IMateriaSource {
 	public:
 		MateriaSource();
