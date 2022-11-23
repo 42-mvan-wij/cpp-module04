@@ -13,12 +13,14 @@ class Brain {
 
 		Brain &operator=(Brain const &rhs);
 
-		std::string ideas[IDEAS];
-
 		void addIdea(std::string idea);
+		void printIdeas() const;
 
 	private:
 		int ideaIndex;
+		int ideaCount;
+		std::string ideas[IDEAS];
+
 };
 
 #endif

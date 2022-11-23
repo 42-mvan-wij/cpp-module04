@@ -4,7 +4,7 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 
-#define ANIMALS 10
+#define ANIMALS_HALF 2
 
 void check_leaks() {
 	std::cout << std::endl;
@@ -16,26 +16,55 @@ int main() {
 
 	std::cout << std::boolalpha;
 
-	const Animal* animals[ANIMALS];
-	for (int i = 0; i < ANIMALS / 2; i++) {
+	const Animal* animals[ANIMALS_HALF * 2];
+	for (int i = 0; i < ANIMALS_HALF; i++) {
 		animals[i] = new Dog();
-		animals[i + ANIMALS / 2] = new Cat();
+		std::cout << "----------" << std::endl;
+	}
+	for (int i = 0; i < ANIMALS_HALF; i++) {
+		animals[i + ANIMALS_HALF] = new Cat();
+		std::cout << "----------" << std::endl;
 	}
 
-	const Dog d;
-	d.giveIdea("Food");
-	d.giveIdea("Cuddles");
-	const Dog dd(d);
-	std::cout << "Is shallow copy: " << (d.getBrain() == dd.getBrain()) << std::endl;
+	std::cout << std::endl;
+	std::cout << "\x1b[34m" << "START MIDDLE" << "\x1b[0m" << std::endl;
+	{
+		const Dog d;
+		d.giveIdea("Food");
+		d.giveIdea("Cuddles");
+		std::cout << "\x1b[32m" << "Thoughts:" << "\x1b[0m" << std::endl;
+		d.getBrain()->printIdeas();
 
-	const Cat c;
-	c.giveIdea("Food");
-	c.giveIdea("World Domination");
-	const Cat cc(c);
-	std::cout << "Is shallow copy: " << (c.getBrain() == cc.getBrain()) << std::endl;
+		std::cout << std::endl;
 
-	for (int i = 0; i < ANIMALS; i++) {
+		const Dog dd(d);
+		std::cout << "Is shallow dog copy: " << "\x1b[33m" << (d.getBrain() == dd.getBrain()) << "\x1b[0m" << std::endl;
+		std::cout << "\x1b[32m" << "Thoughts:" << "\x1b[0m" << std::endl;
+		dd.getBrain()->printIdeas();
+
+		std::cout << std::endl;
+
+		const Cat c;
+		c.giveIdea("Food");
+		c.giveIdea("World Domination");
+		std::cout << "\x1b[32m" << "Thoughts:" << "\x1b[0m" << std::endl;
+		c.getBrain()->printIdeas();
+
+		std::cout << std::endl;
+
+		const Cat cc(c);
+		std::cout << "Is shallow cat copy: " << "\x1b[33m" << (c.getBrain() == cc.getBrain()) << "\x1b[0m" << std::endl;
+		std::cout << "\x1b[32m" << "Thoughts:" << "\x1b[0m" << std::endl;
+		cc.getBrain()->printIdeas();
+
+		std::cout << std::endl;
+	}
+	std::cout << "\x1b[34m" << "END MIDDLE" << "\x1b[0m" << std::endl;
+	std::cout << std::endl;
+
+	for (int i = 0; i < ANIMALS_HALF * 2; i++) {
 		delete animals[i];
+		std::cout << "----------" << std::endl;
 	}
 	return (0);
 }
