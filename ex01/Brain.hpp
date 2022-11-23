@@ -9,7 +9,7 @@ class Brain {
 	public:
 		Brain();
 		Brain(Brain const &src);
-		~Brain();
+		virtual ~Brain();
 
 		Brain &operator=(Brain const &rhs);
 

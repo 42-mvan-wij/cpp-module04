@@ -1,17 +1,21 @@
 #include <iostream>
+#include <cstdlib>
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 
 #define ANIMALS 10
 
-__attribute__((destructor))
 void check_leaks() {
 	std::cout << std::endl;
-	system("leaks -q abstract-animals");
+	std::system("leaks -q abstract-animals");
 }
 
 int main() {
+	std::atexit(&check_leaks);
+
+	std::cout << std::boolalpha;
+
 	const Animal* animals[ANIMALS];
 	for (int i = 0; i < ANIMALS / 2; i++) {
 		animals[i] = new Dog();
@@ -22,13 +26,13 @@ int main() {
 	d.giveIdea("Food");
 	d.giveIdea("Cuddles");
 	const Dog dd(d);
-	std::cout << "Is shallow copy: " << (d.getBrain() == dd.getBrain() ? "true" : "false") << std::endl;
+	std::cout << "Is shallow copy: " << (d.getBrain() == dd.getBrain()) << std::endl;
 
 	const Cat c;
 	c.giveIdea("Food");
 	c.giveIdea("World Domination");
 	const Cat cc(c);
-	std::cout << "Is shallow copy: " << (c.getBrain() == cc.getBrain() ? "true" : "false") << std::endl;
+	std::cout << "Is shallow copy: " << (c.getBrain() == cc.getBrain()) << std::endl;
 
 	for (int i = 0; i < ANIMALS; i++) {
 		delete animals[i];

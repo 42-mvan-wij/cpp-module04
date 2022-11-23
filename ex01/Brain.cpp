@@ -2,16 +2,18 @@
 #include "Brain.hpp"
 
 Brain::Brain() {
-	std::cout << "Brain::Brain() called" << std::endl;
+	std::cout << "Default Brain constructor called" << std::endl;
 	this->ideaIndex = 0;
 }
 
 Brain::Brain(const Brain &src) {
-	std::cout << "Brain::Brain(const Brain &) called" << std::endl;
+	std::cout << "Brain copy constructor called" << std::endl;
 	*this = src;
 }
 
 Brain &Brain::operator=(Brain const &rhs) {
+	if (this == &rhs)
+		return *this;
 	for (int i = 0; i < IDEAS; i++) {
 		this->ideas[i] = rhs.ideas[i];
 	}

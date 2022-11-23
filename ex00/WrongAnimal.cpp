@@ -2,16 +2,17 @@
 #include "WrongAnimal.hpp"
 
 WrongAnimal::WrongAnimal() {
-	std::cout << "WrongAnimal::WrongAnimal() called" << std::endl;
+	std::cout << "Default WrongAnimal constructor called" << std::endl;
 	this->type = "WrongAnimal";
 }
 
-WrongAnimal::WrongAnimal(const WrongAnimal &src) {
-	std::cout << "WrongAnimal::WrongAnimal(const WrongAnimal &) called" << std::endl;
-	*this = src;
+WrongAnimal::WrongAnimal(const WrongAnimal &src) : type(src.type) {
+	std::cout << "WrongAnimal copy constructor called" << std::endl;
 }
 
 WrongAnimal &WrongAnimal::operator=(WrongAnimal const &rhs) {
+	if (this == &rhs)
+		return *this;
 	this->type = rhs.type;
 	return *this;
 }

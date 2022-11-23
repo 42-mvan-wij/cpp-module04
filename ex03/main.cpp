@@ -1,16 +1,17 @@
 #include <iostream>
+#include <cstdlib>
 #include "MateriaSource.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
 #include "Character.hpp"
 
-__attribute__((destructor))
 void check_leaks() {
 	std::cout << std::endl;
-	system("leaks -q interface");
+	std::system("leaks -q interface");
 }
 
 int main() {
+	std::atexit(&check_leaks);
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
