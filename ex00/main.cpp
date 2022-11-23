@@ -13,30 +13,54 @@ void check_leaks() {
 
 int main() {
 	std::atexit(&check_leaks);
-	const Animal* animal = new Animal();
-	const Animal* dog = new Dog();
-	const Animal* cat = new Cat();
-	std::cout << dog->getType() << " " << std::endl;
-	std::cout << cat->getType() << " " << std::endl;
-	cat->makeSound(); //will output the cat sound!
-	dog->makeSound();
-	animal->makeSound();
 
 	{
-		std::cout << "\n\n " << std::endl;
+		std::cout << "\x1b[34m" << "TEST BLOCK 1" << "\x1b[0m" << std::endl;
+		const Animal* animal = new Animal();
+		const Animal* dog = new Dog();
+		const Animal* cat = new Cat();
 
+		std::cout << std::endl;
+
+		std::cout << "dog type: " << dog->getType() << std::endl;
+		std::cout << "cat type: " << cat->getType() << std::endl;
+		std::cout << "animal type: " << animal->getType() << std::endl;
+
+		std::cout << std::endl;
+
+		std::cout << "cat sound: "; cat->makeSound();
+		std::cout << "dog sound: "; dog->makeSound();
+		std::cout << "animal sound: "; animal->makeSound();
+
+		std::cout << std::endl;
+
+		delete animal;
+		delete dog;
+		delete cat;
+	}
+
+	std::cout << std::endl;
+
+	{
+		std::cout << "\x1b[34m" << "TEST BLOCK 2" << "\x1b[0m" << std::endl;
 		const WrongAnimal* wrong_animal = new WrongAnimal();
 		const WrongAnimal* wrong_cat = new WrongCat();
 
-		std::cout << wrong_cat->getType() << " " << std::endl;
-		wrong_cat->makeSound();
-		wrong_animal->makeSound();
+		std::cout << std::endl;
+
+		std::cout << "wrong_cat type: " << wrong_cat->getType() << std::endl;
+		std::cout << "wrong_animal type: " << wrong_animal->getType() << std::endl;
+
+		std::cout << std::endl;
+
+		std::cout << "wrong_cat sound: "; wrong_cat->makeSound();
+		std::cout << "wrong_animal sound: "; wrong_animal->makeSound();
+
+		std::cout << std::endl;
 
 		delete wrong_animal;
 		delete wrong_cat;
 	}
-	delete animal;
-	delete dog;
-	delete cat;
+
 	return (0);
 }
