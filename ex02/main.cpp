@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdlib>
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 
@@ -16,7 +16,7 @@ int main() {
 
 	std::cout << std::boolalpha;
 
-	const Animal* animals[ANIMALS];
+	const AAnimal* animals[ANIMALS];
 	for (int i = 0; i < ANIMALS / 2; i++) {
 		animals[i] = new Dog();
 		animals[i + ANIMALS / 2] = new Cat();
