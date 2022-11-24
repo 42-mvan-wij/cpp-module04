@@ -6,6 +6,11 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
+#define ESCAPE "\x1b"
+#define CSI ESCAPE "["
+#define BLUE CSI "34m"
+#define RESET CSI "0m"
+
 void check_leaks() {
 	std::cout << std::endl;
 	std::system("leaks -q animals");
@@ -15,7 +20,7 @@ int main() {
 	std::atexit(&check_leaks);
 
 	{
-		std::cout << "\x1b[34m" << "TEST BLOCK 1" << "\x1b[0m" << std::endl;
+		std::cout << BLUE << "TEST BLOCK 1" << RESET << std::endl;
 		const Animal* animal = new Animal();
 		const Animal* dog = new Dog();
 		const Animal* cat = new Cat();
@@ -42,7 +47,7 @@ int main() {
 	std::cout << std::endl;
 
 	{
-		std::cout << "\x1b[34m" << "TEST BLOCK 2" << "\x1b[0m" << std::endl;
+		std::cout << BLUE << "TEST BLOCK 2" << RESET << std::endl;
 		const WrongAnimal* wrong_animal = new WrongAnimal();
 		const WrongAnimal* wrong_cat = new WrongCat();
 

@@ -5,6 +5,12 @@
 #include "Cure.hpp"
 #include "Character.hpp"
 
+#define ESCAPE "\x1b"
+#define CSI ESCAPE "["
+#define YELLOW CSI "33m"
+#define BLUE CSI "34m"
+#define RESET CSI "0m"
+
 void check_leaks() {
 	std::cout << std::endl;
 	std::system("leaks -q interface");

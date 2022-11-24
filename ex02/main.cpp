@@ -4,6 +4,13 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 
+#define ESCAPE "\x1b"
+#define CSI ESCAPE "["
+#define GREEN CSI "32m"
+#define YELLOW CSI "33m"
+#define BLUE CSI "34m"
+#define RESET CSI "0m"
+
 #define ANIMALS_HALF 2
 
 void check_leaks() {
@@ -30,19 +37,19 @@ int main() {
 	}
 
 	std::cout << std::endl;
-	std::cout << "\x1b[34m" << "START MIDDLE" << "\x1b[0m" << std::endl;
+	std::cout << BLUE << "START MIDDLE" << RESET << std::endl;
 	{
 		const Dog d;
 		d.giveIdea("Food");
 		d.giveIdea("Cuddles");
-		std::cout << "\x1b[32m" << "Thoughts:" << "\x1b[0m" << std::endl;
+		std::cout << GREEN << "Thoughts:" << RESET << std::endl;
 		d.getBrain()->printIdeas();
 
 		std::cout << std::endl;
 
 		const Dog dd(d);
-		std::cout << "Is shallow dog copy: " << "\x1b[33m" << (d.getBrain() == dd.getBrain()) << "\x1b[0m" << std::endl;
-		std::cout << "\x1b[32m" << "Thoughts:" << "\x1b[0m" << std::endl;
+		std::cout << "Is shallow dog copy: " << YELLOW << (d.getBrain() == dd.getBrain()) << RESET << std::endl;
+		std::cout << GREEN << "Thoughts:" << RESET << std::endl;
 		dd.getBrain()->printIdeas();
 
 		std::cout << std::endl;
@@ -50,19 +57,19 @@ int main() {
 		const Cat c;
 		c.giveIdea("Food");
 		c.giveIdea("World Domination");
-		std::cout << "\x1b[32m" << "Thoughts:" << "\x1b[0m" << std::endl;
+		std::cout << GREEN << "Thoughts:" << RESET << std::endl;
 		c.getBrain()->printIdeas();
 
 		std::cout << std::endl;
 
 		const Cat cc(c);
-		std::cout << "Is shallow cat copy: " << "\x1b[33m" << (c.getBrain() == cc.getBrain()) << "\x1b[0m" << std::endl;
-		std::cout << "\x1b[32m" << "Thoughts:" << "\x1b[0m" << std::endl;
+		std::cout << "Is shallow cat copy: " << YELLOW << (c.getBrain() == cc.getBrain()) << RESET << std::endl;
+		std::cout << GREEN << "Thoughts:" << RESET << std::endl;
 		cc.getBrain()->printIdeas();
 
 		std::cout << std::endl;
 	}
-	std::cout << "\x1b[34m" << "END MIDDLE" << "\x1b[0m" << std::endl;
+	std::cout << BLUE << "END MIDDLE" << RESET << std::endl;
 	std::cout << std::endl;
 
 	for (int i = 0; i < ANIMALS_HALF * 2; i++) {
