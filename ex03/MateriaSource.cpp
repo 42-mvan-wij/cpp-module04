@@ -32,6 +32,12 @@ MateriaSource::~MateriaSource() {
 	for (int i = 0; i < NUM_MATERIAS; i++) {
 		if (this->materias[i] == NULL)
 			continue ;
+
+		for (int j = i + 1; j < NUM_MATERIAS; j++) {
+			if (this->materias[j] == this->materias[i])
+				this->materias[j] = NULL;
+		}
+		
 		delete this->materias[i];
 	}
 }

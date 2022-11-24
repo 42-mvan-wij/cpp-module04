@@ -5,15 +5,13 @@ Cure::Cure() : AMateria("cure") {
 	std::cout << "Default Cure constructor called" << std::endl;
 }
 
-Cure::Cure(const Cure &src) : AMateria("cure") {
+Cure::Cure(const Cure &src) : AMateria(src) {
 	std::cout << "Cure copy constructor called" << std::endl;
-	*this = src;
 }
 
 Cure &Cure::operator=(Cure const &rhs) {
 	if (this == &rhs)
 		return *this;
-	this->type = rhs.type;
 	return *this;
 }
 

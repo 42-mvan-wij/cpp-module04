@@ -13,7 +13,7 @@ Character::Character(const Character &src) {
 	*this = src;
 }
 
-Character::Character(std::string const & name) : name(name) {
+Character::Character(std::string const &name) : name(name) {
 	std::cout << "Character::Character(std::string const &) constructor called" << std::endl;
 	for (int i = 0; i < INV_SLOTS; i++) {
 		inventory[i] = NULL;
@@ -23,8 +23,15 @@ Character::Character(std::string const & name) : name(name) {
 Character::~Character() {
 	std::cout << "Character destructor called" << std::endl;
 	for (int i = 0; i < INV_SLOTS; i++) {
-		if (this->inventory[i] != NULL)
-			delete this->inventory[i];
+		if (this->inventory[i] == NULL)
+			continue ;
+
+		for (int j = i + 1; j < INV_SLOTS; j++) {
+			if (this->inventory[j] == this->inventory[i])
+				this->inventory[j] = NULL;
+		}
+
+		delete this->inventory[i];
 	}
 }
 
